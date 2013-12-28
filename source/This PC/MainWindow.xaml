@@ -1,0 +1,16 @@
+﻿<Window x:Class="This_PC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="This PC" Height="150" Width="200">
+    <Grid>
+        <StackPanel Orientation="Vertical" >
+            <CheckBox Content="Desktop" IsChecked="{Binding Desktop, Mode=TwoWay}" />
+            <CheckBox Content="Downloads" IsChecked="{Binding Downloads, Mode=TwoWay}" />
+            <CheckBox Content="Documents" IsChecked="{Binding Documents, Mode=TwoWay}" />
+            <CheckBox Content="Music" IsChecked="{Binding Music, Mode=TwoWay}" />
+            <CheckBox Content="Pictures" IsChecked="{Binding Pictures, Mode=TwoWay}" />
+            <CheckBox Content="Videos" IsChecked="{Binding Videos, Mode=TwoWay}" />
+        </StackPanel>
+
+    </Grid>
+</Window>
