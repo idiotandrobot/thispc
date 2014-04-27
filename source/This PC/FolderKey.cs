@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,9 +42,16 @@ namespace This_PC
         {
             if (!IsVisible)
             {
-                using (var nameSpaceKey = WriteableNameSpaceKey())
+                try
                 {
-                    nameSpaceKey.CreateSubKey(Key);
+                    using (var nameSpaceKey = WriteableNameSpaceKey())
+                    {
+                        nameSpaceKey.CreateSubKey(Key);
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+
                 }
             }
         }
@@ -52,10 +60,17 @@ namespace This_PC
         {
             if (IsVisible)
             {
-                using (var nameSpaceKey = WriteableNameSpaceKey())
+                try
                 {
-                    nameSpaceKey.DeleteSubKey(Key);
-                }               
+                    using (var nameSpaceKey = WriteableNameSpaceKey())
+                    {
+                        nameSpaceKey.DeleteSubKey(Key);
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+
+                }           
             }
         }
 
@@ -71,7 +86,14 @@ namespace This_PC
 
         private static RegistryKey GetNameSpaceKey(bool writable = false)
         {
-            return Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\", writable);
+            try
+            {
+                return Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\", writable);
+            }
+            catch (SecurityException)
+            {
+                return GetNameSpaceKey();
+            }
         }
     }
 }
