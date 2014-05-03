@@ -6,16 +6,17 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace This_PC
+namespace ThisPC
 {
     public class FolderKey
     {
-        public static RegistryKey NameSpaceKey = ReadOnlyNameSpaceKey();
+        private RootKey RootKey;
 
         public string Key { get; private set; }
 
-        public FolderKey(string key)
+        public FolderKey(string key, RootKey rootKey)
         {
+            RootKey = rootKey;
             Key = key;
         }
 
@@ -23,7 +24,7 @@ namespace This_PC
         {
             get
             {
-                return NameSpaceKey.GetSubKeyNames().Contains(Key);
+                return RootKey.HasSubKey(Key);
             }
             set
             {
@@ -42,17 +43,7 @@ namespace This_PC
         {
             if (!IsVisible)
             {
-                try
-                {
-                    using (var nameSpaceKey = WriteableNameSpaceKey())
-                    {
-                        nameSpaceKey.CreateSubKey(Key);
-                    }
-                }
-                catch (UnauthorizedAccessException)
-                {
-
-                }
+                RootKey.AddSubKey(Key);
             }
         }
 
@@ -60,39 +51,7 @@ namespace This_PC
         {
             if (IsVisible)
             {
-                try
-                {
-                    using (var nameSpaceKey = WriteableNameSpaceKey())
-                    {
-                        nameSpaceKey.DeleteSubKey(Key);
-                    }
-                }
-                catch (UnauthorizedAccessException)
-                {
-
-                }           
-            }
-        }
-
-        private static RegistryKey ReadOnlyNameSpaceKey()
-        {
-            return GetNameSpaceKey();
-        }
-
-        private static RegistryKey WriteableNameSpaceKey()
-        {
-            return GetNameSpaceKey(true);
-        }
-
-        private static RegistryKey GetNameSpaceKey(bool writable = false)
-        {
-            try
-            {
-                return Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\", writable);
-            }
-            catch (SecurityException)
-            {
-                return GetNameSpaceKey();
+                RootKey.RemoveSubKey(Key);
             }
         }
     }

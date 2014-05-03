@@ -6,13 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace This_PC
+namespace ThisPC
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        public static DefaultFolders DefaultFolders = new DefaultFolders();
+        public static MainViewModel ViewModel = new MainViewModel();
     }
 }

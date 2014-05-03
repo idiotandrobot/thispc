@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace This_PC
+namespace ThisPC
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,7 +24,7 @@ namespace This_PC
         {
             InitializeComponent();
 
-            DataContext = App.DefaultFolders;
+            DataContext = App.ViewModel;
         }
     }
 }
