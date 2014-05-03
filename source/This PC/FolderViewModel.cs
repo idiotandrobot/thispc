@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PropertyChanged;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace ThisPC
 {
-    public class FolderViewModel : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class FolderViewModel
     {
         FolderKey FolderKey, FolderKey32;
 
@@ -19,16 +21,7 @@ namespace ThisPC
             FolderKey32 = new FolderKey(key, nameSpace32);
         }
 
-        private string name;
-        public string Name 
-        {
-            get { return name; } 
-            private set
-            {
-                name = value;
-                NotifyPropertyChanged();
-            }
-        }
+        public string Name { get; private set; }
         
         public bool IsVisible
         {
@@ -41,17 +34,6 @@ namespace ThisPC
             {
                 FolderKey.IsVisible = value;
                 FolderKey32.IsVisible = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
