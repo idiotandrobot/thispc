@@ -12,29 +12,24 @@ namespace ThisPC
     [ImplementPropertyChanged]
     public class FolderViewModel
     {
-        FolderKey FolderKey, FolderKey32;
+        List<FolderKey> FolderKeys = new List<FolderKey>();
 
-        public FolderViewModel(string name, string key, RootKey nameSpace, RootKey nameSpace32)
+        public FolderViewModel(string name, string[] keys, RootKey nameSpace, RootKey nameSpace32)
         {
             Name = name;
-            FolderKey = new FolderKey(key, nameSpace);
-            FolderKey32 = new FolderKey(key, nameSpace32);
+            foreach (var key in keys)
+            {
+                FolderKeys.Add(new FolderKey(key, nameSpace));
+                FolderKeys.Add(new FolderKey(key, nameSpace32));
+            }
         }
 
         public string Name { get; private set; }
         
         public bool IsVisible
         {
-            get 
-            {
-                return FolderKey.IsVisible
-                    || FolderKey32.IsVisible;
-            }
-            set
-            {
-                FolderKey.IsVisible = value;
-                FolderKey32.IsVisible = value;
-            }
+            get { return FolderKeys.Count(fk => fk.Exists) > 0; }
+            set { FolderKeys.ForEach(fk => fk.Exists = value); }
         }
     }
 }

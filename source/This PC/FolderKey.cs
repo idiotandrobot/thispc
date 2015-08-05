@@ -20,7 +20,7 @@ namespace ThisPC
             Key = key;
         }
 
-        public bool IsVisible
+        public bool Exists
         {
             get
             {
@@ -29,30 +29,20 @@ namespace ThisPC
             set
             {
                 if (value)
-                {
-                    Show();
-                }
+                    Add();
                 else
-                {
-                    Hide();
-                }
+                    Remove();
             }
         }
 
-        public void Show()
+        public void Add()
         {
-            if (!IsVisible)
-            {
-                RootKey.AddSubKey(Key);
-            }
+            if (!Exists) RootKey.AddSubKey(Key);
         }
 
-        public void Hide()
+        public void Remove()
         {
-            if (IsVisible)
-            {
-                RootKey.RemoveSubKey(Key);
-            }
+            if (Exists) RootKey.RemoveSubKey(Key);
         }
     }
 }

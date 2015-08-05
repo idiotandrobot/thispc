@@ -31,17 +31,17 @@ namespace ThisPC
         {
             Folders = new ObservableCollection<FolderViewModel>();
 
-            Folders.Add(AddFolder(Resources.Desktop, DesktopKeyValue));
-            Folders.Add(AddFolder(Resources.Downloads, DownloadsKeyValue));
-            Folders.Add(AddFolder(Resources.Documents, DocumentsKeyValue));
-            Folders.Add(AddFolder(Resources.Music, MusicKeyValue));
-            Folders.Add(AddFolder(Resources.Pictures, PicturesKeyValue));
-            Folders.Add(AddFolder(Resources.Videos, VideosKeyValue));
+            Folders.Add(AddFolder(Resources.Desktop, new string[] { DesktopKeyValue, }));
+            Folders.Add(AddFolder(Resources.Downloads, new string[] { DownloadsKeyValue, }));
+            Folders.Add(AddFolder(Resources.Documents, new string[] { DocumentsKeyValue, }));
+            Folders.Add(AddFolder(Resources.Music, new string[] { MusicKeyValue, }));
+            Folders.Add(AddFolder(Resources.Pictures, new string[] { PicturesKeyValue, }));
+            Folders.Add(AddFolder(Resources.Videos, new string[] { VideosKeyValue, }));
         }
 
-        private FolderViewModel AddFolder(string name, string key)
+        private FolderViewModel AddFolder(string name, string[] keys)
         {
-            return new FolderViewModel(name, key, NameSpace, NameSpace32);
+            return new FolderViewModel(name, keys, NameSpace, NameSpace32);
         }
     }
 }
