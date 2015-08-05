@@ -5,6 +5,10 @@ thispc
 
 Application to modify Windows Explorer `This PC` content in Windows 8.1 and Windows 10
 
+## NB ##
+
+The application modifies Local Machine in the registry so *both* Visual Studio *and* the compiled exe need to be **Run As Administrator** to function correctly.
+
 ## This PC ##
 
 Windows 8.1 renamed Windows Explorer's `Computer` to `This PC` and added links to user `Desktop`, `Documents`, `Downloads`, `Music`, `Pictures` and `Videos` folders as shown below (with a couple of drives).
@@ -27,4 +31,4 @@ This project is an application with a simple UI to remove (and re-add) these lin
  - `Local Disk (C:)`
  - `Local Disk (D:)`
 
-NB. The program modifies Local Machine in the registry so Visual Studio and the compiled exe need to be run As Administrator to function correctly.
+
