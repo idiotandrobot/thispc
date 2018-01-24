@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CLSIDKey.cs" />
     <Compile Include="FolderViewModel.cs" />
     <Compile Include="Mono.Options\Options.cs" />
     <Compile Include="RootKey.cs" />

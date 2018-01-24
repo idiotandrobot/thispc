@@ -12,8 +12,8 @@ namespace ThisPC
 {
     public class MainViewModel
     {
-        const string NameSpaceValue = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\";
-        const string NameSpace32Value = "SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\";
+        const string NameSpaceValue = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\";
+        const string NameSpace32Value = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\";
 
         const string DesktopKeyValue = "{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}";
         const string DownloadsKeyValue = "{374DE290-123F-4565-9164-39C4925E467B}";
@@ -29,25 +29,52 @@ namespace ThisPC
         const string Win10VideosKeyValue = "{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}";
         const string Win10Objects3DKeyValue = "{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}";
 
+        string[] DesktopKeys = new string[] { DesktopKeyValue, };
+        string[] DownloadsKeys = new string[] { DownloadsKeyValue, Win10DownloadsKeyValue, };
+        string[] DocumentsKeys = new string[] { DocumentsKeyValue, Win10DocumentsKeyValue, };
+        string[] MusicKeys = new string[] { MusicKeyValue, Win10MusicKeyValue, };
+        string[] PicturesKeys = new string[] { PicturesKeyValue, Win10PicturesKeyValue, };
+        string[] VideosKeys = new string[] { VideosKeyValue, Win10VideosKeyValue, };
+        string[] Objects3DKeys = new string[] { Win10Objects3DKeyValue, };
+
         RootKey NameSpace = new RootKey(NameSpaceValue);
         RootKey NameSpace32 = new RootKey(NameSpace32Value);
 
-        public ObservableCollection<FolderViewModel> Folders { get; private set; }
+        CLSIDKey CLSID = new CLSIDKey(@"CLSID\");
+        CLSIDKey CLSID32 = new CLSIDKey(@"Wow6432Node\CLSID\");
+
+        public ObservableCollection<FolderViewModel> Folders { get; private set; } = new ObservableCollection<FolderViewModel>();
 
         public MainViewModel()
         {
-            Folders = new ObservableCollection<FolderViewModel>();
-
-            Folders.Add(AddFolder(Resources.Desktop, new string[] { DesktopKeyValue, }));
-            Folders.Add(AddFolder(Resources.Downloads, new string[] { DownloadsKeyValue, Win10DownloadsKeyValue, }));
-            Folders.Add(AddFolder(Resources.Documents, new string[] { DocumentsKeyValue, Win10DocumentsKeyValue, }));
-            Folders.Add(AddFolder(Resources.Music, new string[] { MusicKeyValue, Win10MusicKeyValue, }));
-            Folders.Add(AddFolder(Resources.Pictures, new string[] { PicturesKeyValue, Win10PicturesKeyValue, }));
-            Folders.Add(AddFolder(Resources.Videos, new string[] { VideosKeyValue, Win10VideosKeyValue, }));
-            Folders.Add(AddFolder(Resources.Objects3D, new string[] { Win10Objects3DKeyValue, }));
+            AddFolder(Resources.Desktop, DesktopKeys);
+            AddFolder(Resources.Downloads, DownloadsKeys);
+            AddFolder(Resources.Documents, DocumentsKeys);
+            AddFolder(Resources.Music, MusicKeys);
+            AddFolder(Resources.Pictures, PicturesKeys);
+            AddFolder(Resources.Videos, VideosKeys);
+            AddFolder(Resources.Objects3D, Objects3DKeys);
         }
 
-        private FolderViewModel AddFolder(string name, string[] keys)
+        private void AddFolder(string name, string[] keys)
+        {
+            if (CLSIDsExist(keys)) Folders.Add(CreateFolder(name, keys));
+        }
+
+        private bool CLSIDsExist(string[] names)
+        {
+            foreach (var name in names)
+                if (CLSIDExists(name)) return true;
+
+            return false;
+        }
+
+        private bool CLSIDExists(string name)
+        {
+            return CLSID.HasSubKey(name) || CLSID32.HasSubKey(name);
+        }
+
+        private FolderViewModel CreateFolder(string name, string[] keys)
         {
             return new FolderViewModel(name, keys, NameSpace, NameSpace32);
         }
