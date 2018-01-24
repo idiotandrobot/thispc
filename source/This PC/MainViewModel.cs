@@ -27,6 +27,7 @@ namespace ThisPC
         const string Win10MusicKeyValue = "{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}";
         const string Win10PicturesKeyValue = "{24ad3ad4-a569-4530-98e1-ab02f9417aa8}";
         const string Win10VideosKeyValue = "{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}";
+        const string Win10Objects3DKeyValue = "{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}";
 
         RootKey NameSpace = new RootKey(NameSpaceValue);
         RootKey NameSpace32 = new RootKey(NameSpace32Value);
@@ -43,6 +44,7 @@ namespace ThisPC
             Folders.Add(AddFolder(Resources.Music, new string[] { MusicKeyValue, Win10MusicKeyValue, }));
             Folders.Add(AddFolder(Resources.Pictures, new string[] { PicturesKeyValue, Win10PicturesKeyValue, }));
             Folders.Add(AddFolder(Resources.Videos, new string[] { VideosKeyValue, Win10VideosKeyValue, }));
+            Folders.Add(AddFolder(Resources.Objects3D, new string[] { Win10Objects3DKeyValue, }));
         }
 
         private FolderViewModel AddFolder(string name, string[] keys)
