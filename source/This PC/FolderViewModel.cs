@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace ThisPC
 {
-    [ImplementPropertyChanged]
-    public class FolderViewModel
+    public class FolderViewModel : INotifyPropertyChanged
     {
         List<FolderKey> FolderKeys = new List<FolderKey>();
 
@@ -31,5 +30,7 @@ namespace ThisPC
             get { return FolderKeys.Count(fk => fk.Exists) > 0; }
             set { FolderKeys.ForEach(fk => fk.Exists = value); }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
