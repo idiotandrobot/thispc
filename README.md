@@ -33,4 +33,4 @@ This project is an application with a simple UI to remove (and re-add) these lin
 
 ## Command Line ##
 
-Can be run in "silent-mode" with (case-insensitive) `-ShowAll` or `-HideAll` parameter (`HideAll` takes priority). Still requires **Run As Adminstrator**.
+Can be run in "silent-mode" with (case-insensitive) `-ShowAll` or `-HideAll` parameter (`HideAll` takes priority). Still requires **Run As Administrator**.
