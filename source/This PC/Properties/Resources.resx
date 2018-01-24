@@ -129,8 +129,15 @@
   <data name="Music" xml:space="preserve">
     <value>Music</value>
   </data>
+  <data name="Objects3D" xml:space="preserve">
+    <value>3D Objects</value>
+  </data>
   <data name="Pictures" xml:space="preserve">
     <value>Pictures</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="thispc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thispc.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Videos" xml:space="preserve">
     <value>Videos</value>
