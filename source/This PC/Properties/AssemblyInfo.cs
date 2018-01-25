@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("This PC")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Windows Explorer 'This PC' folder display editor")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Idiot&Robot")]
 [assembly: AssemblyProduct("This PC")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
