@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using ThisPC.Properties;
@@ -43,10 +44,16 @@ namespace ThisPC
         CLSIDKey CLSID = new CLSIDKey(@"CLSID\");
         CLSIDKey CLSID32 = new CLSIDKey(@"Wow6432Node\CLSID\");
 
+        public bool IsAdmin { get; private set; } 
+        public string Title { get; private set; } 
         public ObservableCollection<FolderViewModel> Folders { get; private set; } = new ObservableCollection<FolderViewModel>();
+
 
         public MainViewModel()
         {
+            IsAdmin = HasAdministratorPrivileges();
+            Title = IsAdmin ? Resources.AdministratorTitle : Resources.DefaultTitle;
+
             AddFolder(Resources.Desktop, DesktopKeys);
             AddFolder(Resources.Downloads, DownloadsKeys);
             AddFolder(Resources.Documents, DocumentsKeys);
@@ -77,6 +84,13 @@ namespace ThisPC
         private FolderViewModel CreateFolder(string name, string[] keys)
         {
             return new FolderViewModel(name, keys, NameSpace, NameSpace32);
+        }
+
+        private static bool HasAdministratorPrivileges()
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

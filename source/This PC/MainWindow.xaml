@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ThisPC.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="This PC" Height="300" Width="400" Icon="Resources\thispc.ico">
+        Title="{Binding Title}" Height="300" Width="400" Icon="Resources\thispc.ico">
     <Window.Resources>
         <Style x:Key="ToggleAppBarButtonStyle" TargetType="ToggleButton">
             <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -51,6 +51,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ToggleButton Content="{Binding Name}" IsChecked="{Binding IsVisible, Mode=TwoWay}" 
+                                  IsEnabled="{Binding DataContext.IsAdmin, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
                                   Style="{StaticResource ToggleAppBarButtonStyle}" />
                 </DataTemplate>
             </ListView.ItemTemplate>

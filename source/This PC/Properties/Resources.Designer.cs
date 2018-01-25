@@ -61,6 +61,24 @@ namespace ThisPC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This PC (Administrator).
+        /// </summary>
+        internal static string AdministratorTitle {
+            get {
+                return ResourceManager.GetString("AdministratorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This PC (Read-only).
+        /// </summary>
+        internal static string DefaultTitle {
+            get {
+                return ResourceManager.GetString("DefaultTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Desktop.
         /// </summary>
         internal static string Desktop {
