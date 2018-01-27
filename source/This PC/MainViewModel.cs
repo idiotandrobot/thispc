@@ -16,6 +16,8 @@ namespace ThisPC
     {
         const string DesktopKeyValue = "{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}";
 
+        const string RecycleBinKeyValue = "{645FF040-5081-101B-9F08-00AA002F954E}";
+
         const string Win8_1DownloadsKeyValue = "{374DE290-123F-4565-9164-39C4925E467B}";
         const string Win8_1DocumentsKeyValue = "{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}";
         const string Win8_1MusicKeyValue = "{1CF1260C-4DD0-4ebb-811F-33C572699FDE}";
@@ -44,6 +46,7 @@ namespace ThisPC
             AddFolder(Resources.Pictures, OSService.IsWin10 ? Win10PicturesKeyValue : Win8_1PicturesKeyValue);
             AddFolder(Resources.Videos, OSService.IsWin10 ? Win10VideosKeyValue : Win8_1VideosKeyValue);
             if (OSService.IsWin10) AddFolder(Resources.Objects3D, Win10Objects3DKeyValue);
+            AddFolder(Resources.RecycleBin, RecycleBinKeyValue);
         }
 
         private void AddFolder(string name, string key)

@@ -133,6 +133,15 @@ namespace ThisPC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recycle Bin.
+        /// </summary>
+        internal static string RecycleBin {
+            get {
+                return ResourceManager.GetString("RecycleBin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon thispc {
