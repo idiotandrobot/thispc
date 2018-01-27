@@ -81,6 +81,8 @@
     <Compile Include="FolderViewModel.cs" />
     <Compile Include="Mono.Options\Options.cs" />
     <Compile Include="RootKey.cs" />
+    <Compile Include="Services\OSService.cs" />
+    <Compile Include="Services\RegistryService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

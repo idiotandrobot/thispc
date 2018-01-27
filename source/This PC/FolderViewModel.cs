@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using ThisPC.Services;
 
 namespace ThisPC
 {
@@ -13,13 +14,12 @@ namespace ThisPC
     {
         List<FolderKey> FolderKeys = new List<FolderKey>();
 
-        public FolderViewModel(string name, string[] keys, RootKey nameSpace, RootKey nameSpace32)
+        public FolderViewModel(string name, string key)
         {
             Name = name;
-            foreach (var key in keys)
+            foreach (var nameSpace in RegistryService.NameSpaceList)
             {
                 FolderKeys.Add(new FolderKey(key, nameSpace));
-                FolderKeys.Add(new FolderKey(key, nameSpace32));
             }
         }
 
