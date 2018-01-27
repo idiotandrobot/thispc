@@ -18,14 +18,11 @@ namespace ThisPC
         {
             Path = path;
             ReadOnlyKey = GetReadOnlyKey();
-            CLSIDList = ReadOnlyKey.GetSubKeyNames();
         }
-
-        private string[] CLSIDList { get; set; }
 
         public bool HasSubKey(string key)
         {
-            return Array.BinarySearch(CLSIDList, key) > 0;
+            return ReadOnlyKey.OpenSubKey(key) != null;
         }
 
         private RegistryKey GetReadOnlyKey()

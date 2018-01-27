@@ -22,7 +22,7 @@ namespace ThisPC
 
         public bool HasSubKey(string key)
         {
-            return ReadOnlyKey.GetSubKeyNames().Contains(key);
+            return ReadOnlyKey.OpenSubKey(key) != null;
         }
 
         public void AddSubKey(string key)
