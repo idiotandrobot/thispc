@@ -5,9 +5,9 @@ namespace ThisPC
 {
     public class CLSIDKey
     {
-        private RegistryKey ReadOnlyKey;
+        private readonly RegistryKey ReadOnlyKey;
 
-        public string Path { get; private set; }
+        public string Path { get; }
 
         public CLSIDKey(string path)
         {
@@ -15,15 +15,9 @@ namespace ThisPC
             ReadOnlyKey = GetReadOnlyKey();
         }
 
-        public bool HasSubKey(string key)
-        {
-            return ReadOnlyKey.OpenSubKey(key) != null;
-        }
+        public bool HasSubKey(string key) => ReadOnlyKey.OpenSubKey(key) != null;
 
-        private RegistryKey GetReadOnlyKey()
-        {
-            return GetKey();
-        }
+        private RegistryKey GetReadOnlyKey() => GetKey();
 
         private RegistryKey GetKey(bool writable = false)
         {

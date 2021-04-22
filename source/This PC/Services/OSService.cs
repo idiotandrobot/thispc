@@ -12,8 +12,8 @@ namespace ThisPC.Services
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static bool IsWin10 { get; private set; } = Environment.OSVersion.Version.Major == 10;
-        public static bool Is64Bit { get; private set; } = Environment.Is64BitOperatingSystem;
-        public static bool IsAdmin { get; private set; } = HasAdministratorPrivileges();
+        public static bool IsWin10 => Environment.OSVersion.Version.Major == 10;
+        public static bool Is64Bit => Environment.Is64BitOperatingSystem;
+        public static bool IsAdmin => HasAdministratorPrivileges();
     }
 }

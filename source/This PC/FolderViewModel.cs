@@ -7,7 +7,7 @@ namespace ThisPC
 {
     public class FolderViewModel : INotifyPropertyChanged
     {
-        List<FolderKey> FolderKeys = new List<FolderKey>();
+        private readonly List<FolderKey> FolderKeys = new List<FolderKey>();
 
         public FolderViewModel(string name, string key)
         {
@@ -18,12 +18,12 @@ namespace ThisPC
             }
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
         
         public bool IsVisible
         {
-            get { return FolderKeys.Count(fk => fk.Exists) > 0; }
-            set { FolderKeys.ForEach(fk => fk.Exists = value); }
+            get => FolderKeys.Count(fk => fk.Exists) > 0; 
+            set => FolderKeys.ForEach(fk => fk.Exists = value);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

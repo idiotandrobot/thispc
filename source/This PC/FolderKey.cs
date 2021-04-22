@@ -2,9 +2,9 @@
 {
     public class FolderKey
     {
-        private RootKey RootKey;
+        private readonly RootKey RootKey;
 
-        public string Key { get; private set; }
+        public string Key { get; }
 
         public FolderKey(string key, RootKey rootKey)
         {
@@ -14,10 +14,7 @@
 
         public bool Exists
         {
-            get
-            {
-                return RootKey.HasSubKey(Key);
-            }
+            get => RootKey.HasSubKey(Key);
             set
             {
                 if (value)

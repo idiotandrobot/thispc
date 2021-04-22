@@ -21,12 +21,11 @@ namespace ThisPC
         const string Win10VideosKeyValue = "{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}";
         const string Win10Objects3DKeyValue = "{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}";      
 
-        public bool IsAdmin { get; private set; } = OSService.IsAdmin;
-        public string Title { get; private set; } = OSService.IsAdmin ? Resources.AdministratorTitle : Resources.DefaultTitle;
+        public bool IsAdmin => OSService.IsAdmin;
+        public string Title => OSService.IsAdmin ? Resources.AdministratorTitle : Resources.DefaultTitle;
 
-        public ObservableCollection<FolderViewModel> Folders { get; private set; } = new ObservableCollection<FolderViewModel>();
-
-
+        public ObservableCollection<FolderViewModel> Folders { get; } = new ObservableCollection<FolderViewModel>();
+        
         public MainViewModel()
         {
             AddFolder(Resources.Desktop, DesktopKeyValue);
