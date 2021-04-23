@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build & Release
 
 # Controls when the action will run. 
 on:
@@ -46,3 +46,7 @@ jobs:
         with:
           name: this-pc
           path: source\This PC\bin\Release\ThisPC.exe
+          
+      - uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
