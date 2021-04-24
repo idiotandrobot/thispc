@@ -44,10 +44,12 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: this-pc
+          name: ThisPC
           path: source\This PC\bin\Release\ThisPC.exe
           
       - uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          artifact: ThisPC.zip
+          draft: true
           tag: latest
