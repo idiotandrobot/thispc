@@ -47,9 +47,10 @@ jobs:
           name: ThisPC
           path: source\This PC\bin\Release\ThisPC.exe
           
-      - uses: ncipollo/release-action@v1
+      - name: Create Draft Release
+        uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact: ThisPC.zip
+          artifact: source\This PC\bin\Release\ThisPC.exe
           draft: true
           tag: latest
